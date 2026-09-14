@@ -33,10 +33,6 @@ void ALE_InteractionActor::BeginPlay()
 				ColliderShape->SetStaticMesh(OwnerActor->Mesh->GetStaticMesh());
 			}
 		}
-		else
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("No Parent Actor"));
-		}
 	}
 	
 }
