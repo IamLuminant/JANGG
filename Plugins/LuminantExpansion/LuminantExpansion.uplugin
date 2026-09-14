@@ -1,0 +1,51 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.2",
+	"FriendlyName": "Luminant'sExpansions",
+	"Description": "A bunch of classic systems that a lot of games would need that are pre set up and are fully replicated. ",
+	"Category": "Game Systems",
+	"CreatedBy": "Luminant",
+	"CreatedByURL": "https://www.youtube.com/channel/UCDwUC5QOJwWXXKpp5gXnZNw",
+	"DocsURL": "https://youtube.com/playlist?list=PLj6tC9CfpgYIyfFQUq0XeViAiWvqa4iY2&si=hgnlaK82OM6zNcEP",
+	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/c662e84f-696e-42c5-9912-01ea23fbd35f",
+	"SupportURL": "https://discord.gg/EDkeVv8SaX",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "LuminantExpansion",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			],
+			"AdditionalDependencies": [
+				"Core",
+				"CoreUObject",
+				"Engine",
+				"InputCore",
+				"EnhancedInput",
+				"GameplayTags"
+			]
+		},
+		{
+			"Name": "LuminantExpansionEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"AdditionalDependencies": [
+				"UnrealEd",
+				"BlueprintGraph",
+				"KismetCompiler"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true,
+			"Activate": true
+		}
+	]
+}
