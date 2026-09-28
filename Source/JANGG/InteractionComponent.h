@@ -4,11 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "LE_InteractionComponent.h"
 #include "InteractionComponent.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class JANGG_API UInteractionComponent : public UActorComponent
+class JANGG_API UInteractionComponent : public ULE_InteractionComponent
 {
 	GENERATED_BODY()
 

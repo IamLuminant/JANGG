@@ -18,8 +18,10 @@ public class JANGG : ModuleRules
 			"StateTreeModule",
 			"GameplayStateTreeModule",
 			"UMG",
-			"Slate"
-		});
+			"Slate",
+            "LuminantExpansion",
+			"LuminantExpansionEditor"
+        });
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
 
