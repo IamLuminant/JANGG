@@ -4,12 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "LE_InteractionInterface.h"
 #include "InteractableActorCPP.generated.h"
 
-class MaterialInstance;
+class UMaterialInstance;
+class UStaticMesh;
+class UStaticMeshComponent;
+class ALE_InteractionActor;
+class UChildActorComponent;
 
 UCLASS()
-class JANGG_API AInteractableActorCPP : public AActor
+class JANGG_API AInteractableActorCPP : public AActor, public ILE_InteractionInterface
 {
 	GENERATED_BODY()
 	
@@ -21,10 +26,24 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	MaterialInstance* OverlayMaterial = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material")
+	UMaterialInstance* OverlayMaterial = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Material")
+	UMaterialInstance* MeshColliderMaterial = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	UStaticMesh* Mesh = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
+	UStaticMeshComponent* MeshComponent = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction")
+	UChildActorComponent* InteractionActor = nullptr;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void InterfaceInteract_Implementation(ACharacter* Interactor) override;
 
 };

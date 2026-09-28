@@ -2,8 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
 #include "LE_InteractionComponent.h"
 #include "InteractionComponent.generated.h"
 
