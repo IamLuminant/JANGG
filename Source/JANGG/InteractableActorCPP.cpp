@@ -18,6 +18,8 @@ AInteractableActorCPP::AInteractableActorCPP()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetStaticMesh(Mesh);
 	SetRootComponent(MeshComponent);
+
+	MeshComponent->SetCollisionResponseToChannel(ECC_Camera, ECR_Overlap);
 	ALE_InteractionActor* interaction = Cast<ALE_InteractionActor>(InteractionActor->GetChildActor());
 	if (interaction)
 	{
@@ -44,5 +46,33 @@ void AInteractableActorCPP::Tick(float DeltaTime)
 void AInteractableActorCPP::InterfaceInteract_Implementation(ACharacter* Interactor)
 {
 	MeshComponent->SetOverlayMaterial(OverlayMaterial);
+}
+
+void AInteractableActorCPP::OnConstruction(const FTransform& Transform)
+{
+    Super::OnConstruction(Transform);
+
+    if (!Mesh || !MeshColliderMaterial || !MeshComponent)
+    {
+        return;
+    }
+
+    MeshComponent->SetStaticMesh(Mesh);
+
+    if (!InteractionActor) return;
+
+    ALE_InteractionActor* interaction = Cast<ALE_InteractionActor>(InteractionActor->GetChildActor());
+    if (!interaction || !interaction->ColliderShape) return;
+
+    UStaticMeshComponent* collider = interaction->ColliderShape;
+    collider->SetStaticMesh(Mesh);
+    collider->SetVisibility(bShowColliderMesh);
+    collider->SetHiddenInGame(!bShowColliderMesh);
+
+    const int32 NumSlots = Mesh->GetStaticMaterials().Num();
+    for (int32 i = 0; i < NumSlots; ++i)
+    {
+        collider->SetMaterial(i, MeshColliderMaterial);
+    }
 }
 
