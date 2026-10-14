@@ -23,17 +23,6 @@ ALE_InteractionActor::ALE_InteractionActor()
 void ALE_InteractionActor::BeginPlay()
 {
 	Super::BeginPlay();
-	if (GetParentActor())
-	{
-		ALE_ItemActor* OwnerActor = Cast<ALE_ItemActor>(GetParentActor());
-		if (OwnerActor)
-		{
-			if (!ColliderShape->GetStaticMesh())
-			{
-				ColliderShape->SetStaticMesh(OwnerActor->Mesh->GetStaticMesh());
-			}
-		}
-	}
 	
 }
 void ALE_InteractionActor::Tick(float DeltaTime)

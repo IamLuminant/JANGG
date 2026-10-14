@@ -24,26 +24,20 @@ public:
 
 protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	virtual void BeginPlay() override;// Called when properties are updated in the editor
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material")
 	UMaterialInstance* OverlayMaterial = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Material")
-	UMaterialInstance* MeshColliderMaterial = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
-	UStaticMesh* Mesh = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Mesh")
+	bool bShowColliderMesh = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh")
 	UStaticMeshComponent* MeshComponent = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction")
-	UChildActorComponent* InteractionActor = nullptr;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	virtual void InterfaceInteract_Implementation(ACharacter* Interactor) override;
+	virtual void InterfaceToggleFocus_Implementation(bool Interactor) override;
 
 };

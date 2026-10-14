@@ -10,21 +10,11 @@
 // Sets default values
 AInteractableActorCPP::AInteractableActorCPP()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
 
-	InteractionActor = CreateDefaultSubobject<UChildActorComponent>(TEXT("InteractionActor"));
-	InteractionActor->SetChildActorClass(ALE_InteractionActor::StaticClass());
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	MeshComponent->SetStaticMesh(Mesh);
-	SetRootComponent(MeshComponent);
-	ALE_InteractionActor* interaction = Cast<ALE_InteractionActor>(InteractionActor->GetChildActor());
-	if (interaction)
-	{
-		interaction->ColliderMaterial = MeshColliderMaterial;
-		interaction->ColliderShape = MeshComponent;
-	}
-
+    MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+    SetRootComponent(MeshComponent);
+    MeshComponent->SetCollisionResponseToChannel(ECC_Camera, ECR_Overlap);
 }
 
 // Called when the game starts or when spawned
@@ -41,8 +31,15 @@ void AInteractableActorCPP::Tick(float DeltaTime)
 
 }
 
-void AInteractableActorCPP::InterfaceInteract_Implementation(ACharacter* Interactor)
+void AInteractableActorCPP::InterfaceToggleFocus_Implementation(bool Interactor)
 {
-	MeshComponent->SetOverlayMaterial(OverlayMaterial);
+    if (Interactor)
+    {
+        MeshComponent->SetOverlayMaterial(OverlayMaterial);
+    }
+    else
+    {
+        MeshComponent->SetOverlayMaterial(nullptr);
+    }
 }
 
