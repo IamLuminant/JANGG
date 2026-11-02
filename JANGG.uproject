@@ -38,11 +38,11 @@
 			"Enabled": true
 		},
 		{
-			"Name": "SteamSockets",
+			"Name": "SocketSubsystemSteamIP",
 			"Enabled": true
 		},
 		{
-			"Name": "SocketSubsystemSteamIP",
+			"Name": "SteamSockets",
 			"Enabled": true
 		},
 		{
