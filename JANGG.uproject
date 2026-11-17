@@ -35,7 +35,8 @@
 			"Name": "LuminantExpansion",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"Enabled": true
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/Fab/product/c662e84f-696e-42c5-9912-01ea23fbd35f"
 		},
 		{
 			"Name": "SocketSubsystemSteamIP",
